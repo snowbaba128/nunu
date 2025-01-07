@@ -122,4 +122,35 @@ document.addEventListener('DOMContentLoaded', function() {
         // 将图片的 src 设置为 caption 的背景
         caption.style.backgroundImage = `url(${img.src})`;
     });
+});
+
+// 移动端照片交互
+document.addEventListener('DOMContentLoaded', function() {
+    const photoItems = document.querySelectorAll('.photo-item');
+    
+    photoItems.forEach(item => {
+        const viewBtn = item.querySelector('.view-details');
+        const caption = item.querySelector('.caption');
+        const closeBtn = item.querySelector('.close-caption');
+        
+        // 点击查看按钮显示寄语
+        viewBtn.addEventListener('click', () => {
+            caption.classList.add('show');
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        });
+        
+        // 点击关闭按钮隐藏寄语
+        closeBtn.addEventListener('click', () => {
+            caption.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+        
+        // 点击背景关闭寄语
+        caption.addEventListener('click', (e) => {
+            if (e.target === caption) {
+                caption.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+    });
 }); 
