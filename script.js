@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// 移动端照片交互
+// 移动端照片交互优化
 document.addEventListener('DOMContentLoaded', function() {
     const photoItems = document.querySelectorAll('.photo-item');
     
@@ -133,24 +133,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const caption = item.querySelector('.caption');
         const closeBtn = item.querySelector('.close-caption');
         
-        // 点击查看按钮显示寄语
-        viewBtn.addEventListener('click', () => {
-            caption.classList.add('show');
-            document.body.style.overflow = 'hidden'; // 防止背景滚动
-        });
-        
-        // 点击关闭按钮隐藏寄语
-        closeBtn.addEventListener('click', () => {
-            caption.classList.remove('show');
-            document.body.style.overflow = '';
-        });
-        
-        // 点击背景关闭寄语
-        caption.addEventListener('click', (e) => {
-            if (e.target === caption) {
+        if (viewBtn && caption && closeBtn) {
+            // 点击查看按钮显示寄语
+            viewBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                caption.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // 点击关闭按钮隐藏寄语
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 caption.classList.remove('show');
                 document.body.style.overflow = '';
-            }
-        });
+            });
+            
+            // 点击背景关闭寄语
+            caption.addEventListener('click', (e) => {
+                if (e.target === caption) {
+                    caption.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
     });
 }); 
