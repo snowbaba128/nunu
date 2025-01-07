@@ -38,25 +38,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const musicBtn = document.getElementById('musicToggle');
     let isPlaying = false;
 
-    // 尝试自动播放
-    function tryAutoplay() {
+    // 尝试播放音乐
+    function tryPlayMusic() {
         music.play().then(() => {
             isPlaying = true;
             musicBtn.classList.remove('paused');
         }).catch(error => {
-            console.log("自动播放失败，等待用户交互:", error);
+            console.log("播放失败:", error);
         });
     }
 
-    // 页面加载时尝试自动播放
-    tryAutoplay();
-
-    // 监听任何用户交互来触发音乐播放
-    document.body.addEventListener('click', function() {
+    // 监听鼠标悬停事件
+    document.body.addEventListener('mouseover', function() {
         if (!isPlaying) {
-            tryAutoplay();
+            tryPlayMusic();
         }
-    }, { once: true });
+    }, { once: true }); // 只触发一次
 
     // 音乐控制按钮点击事件
     musicBtn.addEventListener('click', function() {
@@ -64,8 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             music.pause();
             musicBtn.classList.add('paused');
         } else {
-            music.play();
-            musicBtn.classList.remove('paused');
+            tryPlayMusic();
         }
         isPlaying = !isPlaying;
     });
