@@ -1,0 +1,739 @@
+/* 导入字体 */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Crimson+Text:ital@0;1&display=swap');
+
+:root {
+    --hockey-blue: #1e88e5;
+    --wonder-purple: #9c27b0;
+    --card-bg: rgba(255, 255, 255, 0.95);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+body::before {
+    display: none;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 标题区域样式优化 */
+.header {
+    text-align: center;
+    padding: 35px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: url('images/hockey-arena.jpg') no-repeat center center;
+    background-size: cover;
+    max-width: 1100px;
+    margin: 0 auto 30px;
+}
+
+/* 添加标题区域遮罩 */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 20, 40, 0.8),
+        rgba(0, 40, 80, 0.7)
+    );
+    z-index: 1;
+}
+
+/* 标题内容样式 */
+.header > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* 主标题样式优化 */
+h1 {
+    font-size: 3em;
+    font-weight: 800;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(
+        45deg,
+        #00c6ff 0%,
+        #ffffff 25%,
+        #0072ff 50%,
+        #ffffff 75%,
+        #00c6ff 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    text-shadow: 
+        0 0 40px rgba(0, 198, 255, 0.8),
+        0 0 80px rgba(0, 114, 255, 0.4);
+}
+
+/* 添加霓虹灯效果 */
+h1::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(
+        45deg,
+        #00c6ff,
+        #0072ff
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.5;
+    filter: blur(12px);
+    transform: translateZ(-1px);
+}
+
+/* 添加装饰性下划线 */
+h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #00c6ff,
+        #ffffff,
+        #0072ff,
+        transparent
+    );
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+    filter: blur(1px);
+}
+
+/* 悬停效果 */
+h1:hover {
+    transform: translateY(-5px) rotateX(10deg);
+    letter-spacing: 5px;
+    text-shadow: 
+        0 0 60px rgba(0, 198, 255, 0.9),
+        0 0 100px rgba(0, 114, 255, 0.5);
+}
+
+h1:hover::before {
+    filter: blur(15px);
+    opacity: 0.8;
+}
+
+h1:hover::after {
+    transform: scaleX(1);
+}
+
+/* 添加文字发光动画 */
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 40px rgba(0, 198, 255, 0.8),
+            0 0 80px rgba(0, 114, 255, 0.4);
+        filter: brightness(1);
+    }
+    50% {
+        text-shadow: 
+            0 0 60px rgba(0, 198, 255, 0.9),
+            0 0 100px rgba(0, 114, 255, 0.5);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        opacity: 0.5;
+        filter: blur(12px);
+    }
+    50% {
+        opacity: 0.8;
+        filter: blur(15px);
+    }
+}
+
+h1 {
+    animation: 
+        shimmer 8s linear infinite,
+        titleGlow 3s ease-in-out infinite;
+}
+
+h1::before {
+    animation: neonPulse 3s ease-in-out infinite;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.4em;
+        letter-spacing: 2px;
+    }
+
+    h1:hover {
+        letter-spacing: 3px;
+    }
+}
+
+/* 座右铭容器 */
+.motto-container {
+    margin: 15px 0;
+}
+
+/* 座右铭样式优化 */
+.subtitle {
+    font-size: 1.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    padding: 12px 25px;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(
+        45deg,
+        #fff 0%,
+        #3498db 50%,
+        #fff 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(52, 152, 219, 0.9);
+}
+
+/* 添加装饰性边框 */
+.subtitle::before,
+.subtitle::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+}
+
+.subtitle::before {
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.subtitle::after {
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 添加动画效果 */
+@keyframes glowText {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(52, 152, 219, 0.8);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(52, 152, 219, 1);
+    }
+}
+
+.subtitle {
+    animation: glowText 3s ease-in-out infinite;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .subtitle {
+        font-size: 1.4em;
+        padding: 10px 20px;
+        margin: 20px 0;
+    }
+}
+
+.header-icons {
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+/* 照片网格布局优化 */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: none;
+    border: none;
+    backdrop-filter: none;
+}
+
+/* 照片项样式优化 */
+.photo-item {
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    background: #fff;
+    border: none;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    aspect-ratio: 3/4;
+    transform-style: preserve-3d;
+    perspective: 1500px;
+    cursor: pointer;
+    transform-origin: center;
+    transform: scale(0.98);
+}
+
+.photo-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(30, 136, 229, 0.2), 
+        rgba(156, 39, 176, 0.2)
+    );
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.photo-item:hover {
+    transform: scale(1.15) translateY(-15px);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(52, 152, 219, 0.3);
+    z-index: 10;
+}
+
+.photo-item:hover::before {
+    opacity: 1;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.photo-item:hover img {
+    transform: scale(1.1) translateZ(30px);
+    filter: brightness(0.8) contrast(1.2);
+}
+
+/* 寄语样式优化 */
+.caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: white;
+    padding: 25px;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+    overflow: hidden;
+    transform: translateZ(50px) scale(0.8);
+}
+
+/* 显示寄语 */
+.photo-item:hover .caption {
+    opacity: 1;
+    transform: translateZ(50px) scale(1);
+}
+
+/* 添加模糊背景 */
+.caption::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px) brightness(0.5);
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1.1);
+}
+
+/* 添加渐变叠加层 */
+.caption::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(30, 136, 229, 0.7),
+        rgba(156, 39, 176, 0.7)
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.photo-item:hover .caption::after {
+    opacity: 1;
+}
+
+/* 年份样式优化 */
+.year {
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    transform: translateY(-30px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+.year::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        #fff,
+        transparent
+    );
+    transform: scaleX(0);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photo-item:hover .year {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.photo-item:hover .year::after {
+    transform: scaleX(1);
+}
+
+/* 寄语文本样式优化 */
+.message {
+    font-size: 1em;
+    line-height: 1.7;
+    padding: 0 20px;
+    max-height: 70%;
+    overflow-y: auto;
+    text-align: left;
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.photo-item:hover .message {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* 添加鼠标移动视差效果 */
+.photo-item:hover {
+    transition: transform 0.1s ease;
+}
+
+@media (hover: hover) {
+    .photo-item {
+        transform-style: preserve-3d;
+    }
+    
+    .photo-item:hover {
+        transition: none;
+    }
+}
+
+/* 添加点击效果 */
+.photo-item:active {
+    transform: translateY(-10px) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2.2em;
+    }
+}
+
+/* 计数器样式 */
+.counter {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 15px 0;
+    padding: 15px;
+    background: none;
+    border: none;
+    backdrop-filter: none;
+}
+
+.counter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 18px;
+    border-radius: 12px;
+    box-shadow: none;
+    min-width: 90px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+}
+
+.counter-item:hover {
+    transform: translateY(-5px);
+}
+
+.counter-item span {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.counter-item label {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .counter {
+        gap: 15px;
+    }
+    
+    .counter-item {
+        padding: 10px 15px;
+        min-width: 90px;
+    }
+    
+    .counter-item span {
+        font-size: 1.8em;
+    }
+    
+    .counter-item label {
+        font-size: 0.8em;
+    }
+} 
+
+/* 计数器标题样式 */
+.counter-title {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+/* 添加装饰性元素 */
+.counter-title::before,
+.counter-title::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--hockey-blue);
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.counter-title::before {
+    left: -15px;
+}
+
+.counter-title::after {
+    right: -15px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .counter-title {
+        font-size: 1em;
+        margin: 20px 0 15px;
+    }
+    
+    .counter {
+        padding: 15px;
+        margin: 0 0 25px;
+    }
+} 
+
+/* 全局动画效果 */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* 图标动画 */
+.header-icons .icon {
+    display: inline-block;
+    margin: 0 12px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.header-icons .icon:nth-child(2) {
+    animation-delay: -1.5s;
+}
+
+/* 滚动条美化 */
+.message::-webkit-scrollbar {
+    width: 6px;
+}
+
+.message::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+}
+
+.message::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+.message::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+/* 音乐控制按钮优化 */
+.music-btn {
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.music-btn:hover {
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 页面加载动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header, .photo-item {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.photo-item {
+    animation-delay: calc(0.1s * var(--i));
+} 
+
+/* 添加过渡遮罩 */
+.photo-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.photo-item:hover::after {
+    opacity: 1;
+} 
+
+/* 图标样式优化 */
+.header-icons .icon {
+    color: #fff;
+    font-size: 2em;
+    text-shadow: 0 0 15px rgba(52, 152, 219, 0.8);
+    opacity: 0.9;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .header {
+        padding: 30px 20px;
+        gap: 12px;
+    }
+
+    .motto-container {
+        margin: 20px 0;
+    }
+
+    .subtitle {
+        font-size: 1.4em;
+        padding: 10px 20px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+} 
