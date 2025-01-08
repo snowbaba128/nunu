@@ -897,6 +897,7 @@ h1::before {
         right: 0;
         padding: 30px 25px;
         animation: scrollText 40s linear infinite;
+        animation-delay: 10s;
         animation-play-state: paused;
     }
 
@@ -927,10 +928,10 @@ h1::before {
 
     /* 滚动动画 */
     @keyframes scrollText {
-        0% {
+        0%, 15% {
             transform: translateY(8%);
         }
-        100% {
+        85%, 100% {
             transform: translateY(-100%);
         }
     }
