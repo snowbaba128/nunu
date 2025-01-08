@@ -1131,36 +1131,35 @@ h1::before {
         position: relative;
         border-radius: 15px;
         overflow: hidden;
-        aspect-ratio: 3/4;
+        width: 100%;
+        /* 移除固定的长宽比 */
     }
 
     /* 照片样式 */
     .photo-item img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: brightness(0.7); /* 调暗照片以提高文字可读性 */
+        height: auto; /* 让高度自适应 */
+        display: block;
+        object-fit: contain; /* 确保照片完整显示 */
+        filter: brightness(0.8);
     }
 
     /* 寄语容器样式 */
     .caption {
-        position: absolute;
+        position: absolute !important;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background: linear-gradient(
             to bottom,
-            rgba(0, 0, 0, 0.2),
-            rgba(0, 0, 0, 0.7)
+            transparent,
+            rgba(0, 0, 0, 0.8)
         );
-        display: flex;
+        display: flex !important;
         flex-direction: column;
-        justify-content: flex-end; /* 文字靠下显示 */
+        justify-content: flex-end;
         padding: 20px;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
         z-index: 2;
     }
 
@@ -1168,7 +1167,7 @@ h1::before {
     .message {
         font-size: 1.1em;
         line-height: 1.6;
-        color: rgba(255, 255, 255, 0.95);
+        color: #ffffff;
         text-align: left;
         padding: 15px;
         margin: 0;
@@ -1176,27 +1175,27 @@ h1::before {
         border-radius: 12px;
         backdrop-filter: blur(5px);
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        display: block !important;
     }
 
-    /* 移除所有按钮和多余样式 */
+    /* 移除所有不需要的元素和样式 */
     .view-details,
     .close-caption,
     .caption::after,
-    .caption::before {
+    .caption::before,
+    .year {
         display: none !important;
     }
 
-    /* 移除年份标题，因为已经有了年份标签 */
-    .year {
-        display: none;
-    }
-
-    /* 移除所有悬停和点击相关的样式 */
-    .photo-item:hover .caption,
-    .caption.show {
-        opacity: 1;
-        visibility: visible;
-        transform: none;
+    /* 移除所有动画和交互效果 */
+    .photo-item *,
+    .caption *,
+    .message * {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 } 
 
@@ -1633,16 +1632,17 @@ h1::before {
         position: relative;
         border-radius: 15px;
         overflow: hidden;
-        aspect-ratio: 3/4;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        /* 移除固定的长宽比 */
     }
 
     /* 照片样式 */
     .photo-item img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: brightness(0.7);
+        height: auto; /* 让高度自适应 */
+        display: block;
+        object-fit: contain; /* 确保照片完整显示 */
+        filter: brightness(0.8);
     }
 
     /* 寄语容器样式 */
@@ -1662,11 +1662,6 @@ h1::before {
         justify-content: flex-end;
         padding: 20px;
         z-index: 2;
-    }
-
-    /* 寄语内容容器 */
-    .caption-content {
-        display: block !important;
     }
 
     /* 寄语文本样式 */
