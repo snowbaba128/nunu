@@ -884,11 +884,8 @@ h1::before {
         overflow: hidden;
         font-weight: 500;
         letter-spacing: 0.01em;
-        background: rgba(255, 255, 255, 0.98);
+        background: transparent;
         border-radius: 16px;
-        box-shadow: 
-            0 4px 20px rgba(0, 0, 0, 0.12),
-            0 0 0 1px rgba(255, 255, 255, 0.1);
     }
 
     /* 文字滚动动画容器 */
@@ -899,9 +896,8 @@ h1::before {
         left: 0;
         right: 0;
         padding: 30px 25px;
-        background: none;
-        box-shadow: none;
-        animation: scrollText 35s linear infinite;
+        color: rgba(255, 255, 255, 0.95);
+        animation: scrollTextWithDelay 35s linear 5s infinite;
         animation-play-state: paused;
     }
 
@@ -913,6 +909,21 @@ h1::before {
 
     .photo-item .caption.show .message::after {
         animation-play-state: running;
+    }
+
+    /* 滚动动画（添加延迟） */
+    @keyframes scrollTextWithDelay {
+        0%, 14.3% {
+            transform: translateY(8%);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+    }
+
+    /* 移除渐变效果 */
+    .photo-item .caption .message::before {
+        display: none;
     }
 
     /* 年份标签 */
@@ -931,31 +942,5 @@ h1::before {
         padding: 7px 18px;
         border-radius: 20px;
         backdrop-filter: blur(8px);
-    }
-
-    /* 滚动动画 */
-    @keyframes scrollText {
-        0% {
-            transform: translateY(8%);
-        }
-        100% {
-            transform: translateY(-100%);
-        }
-    }
-
-    /* 添加文字渐变效果 */
-    .photo-item .caption .message::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 35px;
-        pointer-events: none;
-        background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(255, 255, 255, 0) 100%
-        );
-        top: 0;
-        z-index: 1;
     }
 } 
