@@ -794,53 +794,93 @@ h1::before {
         background-position: center 40%;
         background-size: cover;
         background-repeat: no-repeat;
-        min-height: 280px;
-        padding: 30px 20px;
-        gap: 12px;
+        min-height: 300px;
+        padding: 25px 20px;
         position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
     }
 
+    /* 标题文字样式 */
+    h1 {
+        font-size: 2em;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin: 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* 座右铭容器样式 */
+    .motto-container {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 座右铭文字样式 */
+    .subtitle {
+        font-size: 1.3em;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 25px;
+        display: inline-block;
+        margin: 0;
+    }
+
+    /* 计数器区域样式 */
     .counter-section {
-        margin-top: auto;
         position: relative;
         z-index: 2;
         background: rgba(0, 0, 0, 0.5);
-        padding: 15px;
-        border-radius: 10px;
+        padding: 15px 20px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 400px;
+        margin-bottom: 10px;
     }
 
     .counter-title {
         color: #fff;
+        font-size: 0.9em;
+        margin-bottom: 10px;
+        text-align: center;
     }
 
-    .motto-container {
-        margin: 15px 0;
-        position: relative;
-        z-index: 2;
+    .counter {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
     }
 
-    .subtitle {
-        font-size: 1.4em;
-        padding: 10px 20px;
+    .counter-item {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        padding: 8px 15px;
+        border-radius: 10px;
         color: #fff;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        background: none;
-        border-radius: 8px;
+        text-align: center;
     }
 
-    h1 {
-        font-size: 2.2em;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        color: #fff;
-        position: relative;
-        z-index: 2;
-        margin-top: 10px;
+    .counter-item span {
+        font-size: 1.2em;
+        font-weight: 600;
     }
 
-    /* 添加暗色渐变遮罩 */
+    .counter-item label {
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.9);
+        display: block;
+        margin-top: 4px;
+    }
+
+    /* 背景渐变遮罩 */
     .header::after {
         content: '';
         position: absolute;
@@ -856,111 +896,16 @@ h1::before {
         z-index: 1;
     }
 
-    /* 计数器样式优化 */
-    .counter {
-        color: #fff;
-    }
-
-    .counter-item {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(5px);
-    }
-
-    .counter-item label {
-        color: rgba(255, 255, 255, 0.9);
-    }
-} 
-
-/* 移动端样式优化 */
-@media (max-width: 768px) {
-    /* 照片网格布局 */
-    .photo-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 20px;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    /* 照片项样式 */
-    .photo-item {
+    /* 图标样式 */
+    .header-icons {
         position: relative;
-        border-radius: 20px;
-        background: #fff;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        cursor: pointer;
+        z-index: 2;
     }
 
-    /* 照片样式 */
-    .photo-item img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    /* 寄语容器样式 */
-    .photo-item .caption {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 60px 20px 20px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* 寄语文本样式 */
-    .photo-item .caption .message {
-        font-family: 'Playfair Display', 'Times New Roman', serif;
-        font-size: 1.1em;
-        line-height: 1.7;
+    .header-icons .icon {
         color: #fff;
-        text-align: left;
-        padding: 20px;
-        width: 100%;
-        max-width: 600px;
-        height: calc(100% - 60px);
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* 显示寄语状态 */
-    .photo-item .caption.show {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* 年份标签 */
-    .photo-item .caption::before {
-        content: attr(data-year);
-        position: absolute;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #fff;
-        font-size: 1.1em;
-        font-weight: 500;
-    }
-
-    /* 美化滚动条 */
-    .photo-item .caption .message::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    .photo-item .caption .message::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    .photo-item .caption .message::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 2px;
+        font-size: 1.8em;
+        margin: 0 10px;
+        text-shadow: 0 0 15px rgba(52, 152, 219, 0.8);
     }
 } 
