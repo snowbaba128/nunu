@@ -153,10 +153,33 @@ document.addEventListener('DOMContentLoaded', function() {
 // 移动端滚动动画
 document.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth <= 768) {
+        const captions = document.querySelectorAll('.caption');
+        
+        captions.forEach(caption => {
+            caption.addEventListener('click', function() {
+                // 切换展开状态
+                this.classList.toggle('expanded');
+                
+                // 如果展开了，滚动到寄语位置
+                if (this.classList.contains('expanded')) {
+                    const offset = 20;
+                    const elementPosition = this.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 添加滚动动画
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, {
