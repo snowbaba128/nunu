@@ -814,8 +814,7 @@ h1::before {
         border-radius: 20px;
         background: #fff;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        transition: transform 0.3s ease;
+        overflow: visible;
     }
 
     /* 照片样式 */
@@ -847,10 +846,8 @@ h1::before {
         position: relative;
         background: #fff;
         padding: 20px;
-        transform: translateY(-10px);
-        border-radius: 20px;
-        margin: 0 10px;
-        box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     }
 
     /* 寄语文本样式 */
@@ -861,33 +858,30 @@ h1::before {
         text-align: left;
         margin: 0;
         padding: 10px 5px;
-        position: relative;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-    }
-
-    /* 添加展开按钮 */
-    .caption::after {
-        content: "点击查看寄语";
-        display: block;
-        text-align: center;
-        padding: 10px;
-        color: #3498db;
-        font-size: 0.9em;
-        font-weight: 500;
-        cursor: pointer;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-        margin-top: 10px;
+        display: none;
     }
 
     /* 展开状态 */
     .caption.expanded .message {
-        max-height: 500px;
+        display: block;
     }
 
-    .caption.expanded::after {
-        content: "收起寄语";
+    /* 展开按钮样式 */
+    .caption-toggle {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        color: #3498db;
+        font-size: 0.95em;
+        font-weight: 500;
+        background: none;
+        border: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+    }
+
+    .caption.expanded .caption-toggle {
         color: #95a5a6;
     }
 

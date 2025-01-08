@@ -150,20 +150,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// 移动端滚动动画
+// 移动端交互处理
 document.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth <= 768) {
-        const captions = document.querySelectorAll('.caption');
+        const toggleButtons = document.querySelectorAll('.caption-toggle');
         
-        captions.forEach(caption => {
-            caption.addEventListener('click', function() {
-                // 切换展开状态
-                this.classList.toggle('expanded');
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const caption = this.parentElement;
+                const isExpanded = caption.classList.toggle('expanded');
                 
-                // 如果展开了，滚动到寄语位置
-                if (this.classList.contains('expanded')) {
+                // 更新按钮文本
+                this.textContent = isExpanded ? '收起寄语' : '点击查看寄语';
+                
+                // 如果展开，滚动到合适位置
+                if (isExpanded) {
                     const offset = 20;
-                    const elementPosition = this.getBoundingClientRect().top;
+                    const elementPosition = caption.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - offset;
                     
                     window.scrollTo({
