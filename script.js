@@ -124,16 +124,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// 移动端照片交互优化
+// 移动端照片交互
 document.addEventListener('DOMContentLoaded', function() {
     const photoItems = document.querySelectorAll('.photo-item');
     
     photoItems.forEach(item => {
         const viewBtn = item.querySelector('.view-details');
         const caption = item.querySelector('.caption');
-        const closeBtn = item.querySelector('.close-caption');
         
-        if (viewBtn && caption && closeBtn) {
+        if (viewBtn && caption) {
             // 点击查看按钮显示寄语
             viewBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -141,16 +140,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = 'hidden';
             });
             
-            // 点击关闭按钮隐藏寄语
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                caption.classList.remove('show');
-                document.body.style.overflow = '';
-            });
-            
-            // 点击背景关闭寄语
+            // 点击关闭按钮区域隐藏寄语
             caption.addEventListener('click', (e) => {
-                if (e.target === caption) {
+                if (e.target === caption || e.target.closest('.caption::after')) {
                     caption.classList.remove('show');
                     document.body.style.overflow = '';
                 }
