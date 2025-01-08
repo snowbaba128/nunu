@@ -175,12 +175,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 点击照片显示寄语
             item.addEventListener('click', (e) => {
-                caption.classList.add('show');
+                if (!e.target.closest('.caption')) {
+                    caption.classList.add('show');
+                }
             });
             
-            // 点击寄语关闭
+            // 点击寄语背景关闭
             caption.addEventListener('click', (e) => {
-                if (e.target === caption) { // 只有点击背景时才关闭
+                if (e.target === caption) {
                     caption.classList.remove('show');
                 }
             });

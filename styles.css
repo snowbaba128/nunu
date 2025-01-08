@@ -849,31 +849,15 @@ h1::before {
         display: block;
     }
 
-    /* 年份标签样式 */
-    .photo-item::before {
-        content: attr(data-year);
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 8px 16px;
-        border-radius: 25px;
-        font-size: 0.9em;
-        font-weight: 600;
-        color: #2c3e50;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        z-index: 2;
-    }
-
     /* 寄语容器样式 */
-    .caption {
+    .photo-item .caption {
         position: fixed;
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.95);
-        padding: 20px;
+        padding: 30px;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
@@ -881,11 +865,10 @@ h1::before {
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow-y: auto;
     }
 
     /* 寄语文本样式 */
-    .message {
+    .photo-item .caption .message {
         font-size: 1.1em;
         line-height: 1.8;
         color: #ffffff;
@@ -893,33 +876,13 @@ h1::before {
         padding: 20px;
         max-width: 600px;
         margin: 0 auto;
-        position: relative;
-        z-index: 1001;
+        overflow-y: auto;
+        max-height: 80vh;
     }
 
     /* 显示寄语状态 */
-    .caption.show {
+    .photo-item .caption.show {
         opacity: 1;
         visibility: visible;
-    }
-
-    /* 移除所有不需要的元素 */
-    .caption-toggle,
-    .caption-content {
-        display: none;
-    }
-
-    /* 添加动画效果 */
-    .photo-item {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.6s ease forwards;
-    }
-
-    @keyframes fadeInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
     }
 } 
