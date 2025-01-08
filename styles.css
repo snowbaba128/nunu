@@ -810,6 +810,14 @@ h1::before {
 
 /* 移动端样式优化 */
 @media (max-width: 768px) {
+    /* 添加标题栏背景图片 */
+    .header {
+        background-image: url('images/header-mobile.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
     /* 照片网格布局 */
     .photo-grid {
         grid-template-columns: 1fr;
