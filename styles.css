@@ -930,4 +930,38 @@ h1::before {
             transform: translateY(-100%);
         }
     }
+
+    /* 寄语容器显示状态 */
+    .photo-item .caption.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* 文字内容样式 */
+    .photo-item .caption .message::after {
+        content: attr(data-content);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 30px 25px;
+        opacity: 0;  /* 初始状态隐藏 */
+    }
+
+    /* 显示寄语时的文字动画 */
+    .photo-item .caption.show .message::after {
+        opacity: 1;
+        animation: scrollTextDelay 50s linear infinite;  /* 增加总时长 */
+        animation-fill-mode: forwards;
+    }
+
+    /* 滚动动画 - 包含延迟和循环 */
+    @keyframes scrollTextDelay {
+        0%, 20% {  /* 前20%时间保持在起始位置 */
+            transform: translateY(8%);
+        }
+        80%, 100% {  /* 最后20%时间保持在结束位置 */
+            transform: translateY(-100%);
+        }
+    }
 } 
