@@ -135,8 +135,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 点击照片显示寄语
             item.addEventListener('click', (e) => {
-                caption.classList.add('show');
-                document.body.style.overflow = 'hidden';
+                if (!caption.classList.contains('show')) {
+                    caption.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                }
             });
             
             // 点击寄语返回照片
