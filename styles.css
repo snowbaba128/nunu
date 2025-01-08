@@ -1623,8 +1623,82 @@ h1::before {
     /* 照片网格布局 */
     .photo-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 40px;
         padding: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* 照片项样式 */
+    .photo-item {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transform: none !important;
+        background: #fff;
+    }
+
+    /* 照片样式 */
+    .photo-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: none !important;
+    }
+
+    /* 年份标签样式 */
+    .photo-item::before {
+        content: attr(data-year);
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-size: 0.9em;
+        font-weight: 600;
+        color: #2c3e50;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+    }
+
+    /* 寄语容器样式 */
+    .caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.7) 50%,
+            transparent 100%
+        );
+        padding: 80px 25px 25px;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    /* 寄语文本样式 */
+    .message {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #ffffff;
+        text-align: left;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 移除所有不需要的元素和样式 */
+    .view-details,
+    .close-caption,
+    .caption::after,
+    .caption::before,
+    .year {
+        display: none !important;
     }
 
     /* 标题响应式调整 */
@@ -1643,5 +1717,17 @@ h1::before {
     
     .counter-item {
         padding: 8px 15px;
+    }
+
+    /* 添加滚动时的动画效果 */
+    .photo-item {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-out;
+    }
+
+    .photo-item.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 } 
