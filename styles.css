@@ -1635,7 +1635,6 @@ h1::before {
         overflow: hidden;
         aspect-ratio: 3/4;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transform: none !important;
     }
 
     /* 照片样式 */
@@ -1643,8 +1642,7 @@ h1::before {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        filter: brightness(0.7);
-        transform: none !important;
+        filter: brightness(0.6); /* 调暗照片以提高文字可读性 */
     }
 
     /* 寄语容器样式 */
@@ -1654,16 +1652,19 @@ h1::before {
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.3),
-            rgba(0, 0, 0, 0.7)
-        );
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         justify-content: flex-end;
         padding: 20px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0, 0, 0, 0.7)
+        );
         z-index: 2;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
     }
 
     /* 寄语文本样式 */
@@ -1674,13 +1675,15 @@ h1::before {
         text-align: left;
         padding: 15px;
         margin: 0;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.4);
         border-radius: 12px;
         backdrop-filter: blur(5px);
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        opacity: 1 !important;
+        display: block !important;
     }
 
-    /* 移除所有不需要的样式和元素 */
+    /* 移除所有不需要的元素和样式 */
     .view-details,
     .close-caption,
     .caption::after,
