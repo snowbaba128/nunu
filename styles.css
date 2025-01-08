@@ -856,8 +856,13 @@ h1::before {
         right: 0;
         top: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.95);
-        padding: 30px;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.98),
+            rgba(0, 20, 40, 0.98)
+        );
+        backdrop-filter: blur(10px);
+        padding: 40px 25px;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
@@ -867,22 +872,77 @@ h1::before {
         justify-content: center;
     }
 
-    /* 寄语文本样式 */
+    /* 寄语文本容器 */
     .photo-item .caption .message {
-        font-size: 1.1em;
+        font-size: 1.2em;
         line-height: 1.8;
         color: #ffffff;
         text-align: left;
-        padding: 20px;
+        padding: 25px;
         max-width: 600px;
+        width: 100%;
         margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         overflow-y: auto;
-        max-height: 80vh;
+        max-height: 70vh;
+        position: relative;
+        animation: slideUp 0.5s ease forwards;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    /* 滚动条样式 */
+    .photo-item .caption .message::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .photo-item .caption .message::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+    }
+
+    .photo-item .caption .message::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
     }
 
     /* 显示寄语状态 */
     .photo-item .caption.show {
         opacity: 1;
         visibility: visible;
+    }
+
+    .photo-item .caption.show .message {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* 年份标签 */
+    .photo-item .caption::before {
+        content: attr(data-year);
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.2em;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+
+    /* 添加动画 */
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 } 
