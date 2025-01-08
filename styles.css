@@ -856,112 +856,58 @@ h1::before {
         right: 0;
         top: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 60px 30px 30px;
+        background: rgba(0, 0, 0, 0.85);
+        padding: 60px 20px 20px;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease;
         z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
-    /* 寄语文本容器 */
+    /* 寄语文本样式 */
     .photo-item .caption .message {
         font-family: 'Playfair Display', 'Times New Roman', serif;
-        font-size: 1.05em;
-        line-height: 1.65;
-        color: #2c3e50;
+        font-size: 1.1em;
+        line-height: 1.7;
+        color: #fff;
         text-align: left;
-        padding: 30px 25px;
-        max-width: 550px;
-        width: 92%;
-        margin: 0 auto;
-        height: 75vh;
-        position: relative;
-        overflow: hidden;
-        font-weight: 400;
-        letter-spacing: 0.01em;
-        background: rgba(255, 255, 255, 0.98);
-        border-radius: 12px;
-        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    /* 文字内容样式 */
-    .photo-item .caption .message::after {
-        content: attr(data-content);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 30px 25px;
-        animation: none;
+        padding: 0 20px;
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     /* 显示寄语状态 */
-    .photo-item .caption.show .message::after {
-        animation: scrollText 40s linear infinite;
-        animation-delay: 10s;
-        animation-fill-mode: both;
+    .photo-item .caption.show {
+        opacity: 1;
+        visibility: visible;
     }
 
     /* 年份标签 */
     .photo-item .caption::before {
         content: attr(data-year);
         position: absolute;
-        top: 15px;
+        top: 20px;
         left: 50%;
         transform: translateX(-50%);
-        color: rgba(255, 255, 255, 0.98);
+        color: #fff;
         font-family: 'Montserrat', sans-serif;
-        font-size: 1em;
+        font-size: 1.1em;
         font-weight: 500;
         letter-spacing: 1px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     }
 
-    /* 滚动动画 */
-    @keyframes scrollText {
-        0%, 10% {
-            transform: translateY(8%);
-        }
-        90%, 100% {
-            transform: translateY(-100%);
-        }
+    /* 美化滚动条 */
+    .photo-item .caption .message::-webkit-scrollbar {
+        width: 4px;
     }
 
-    /* 寄语容器显示状态 */
-    .photo-item .caption.show {
-        opacity: 1;
-        visibility: visible;
+    .photo-item .caption .message::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
     }
 
-    /* 文字内容样式 */
-    .photo-item .caption .message::after {
-        content: attr(data-content);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 30px 25px;
-        opacity: 0;  /* 初始状态隐藏 */
-    }
-
-    /* 显示寄语时的文字动画 */
-    .photo-item .caption.show .message::after {
-        opacity: 1;
-        animation: scrollTextDelay 50s linear infinite;  /* 增加总时长 */
-        animation-fill-mode: forwards;
-    }
-
-    /* 滚动动画 - 包含延迟和循环 */
-    @keyframes scrollTextDelay {
-        0%, 20% {  /* 前20%时间保持在起始位置 */
-            transform: translateY(8%);
-        }
-        80%, 100% {  /* 最后20%时间保持在结束位置 */
-            transform: translateY(-100%);
-        }
+    .photo-item .caption .message::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
     }
 } 
