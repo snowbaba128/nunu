@@ -1177,3 +1177,73 @@ h1::before {
 
     /* 移动端按钮样式保持不变 */
 } 
+
+/* 移动端样式优化 */
+@media (max-width: 768px) {
+    /* 照片项样式调整 */
+    .photo-item {
+        position: relative;
+    }
+
+    /* 寄语容器样式 */
+    .caption {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    /* 显示寄语时的样式 */
+    .caption.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* 关闭按钮 */
+    .caption::after {
+        content: '×';
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    /* 年份和寄语文本样式 */
+    .year {
+        font-size: 2em;
+        color: white;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .message {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        padding: 20px;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+} 
