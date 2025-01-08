@@ -790,122 +790,114 @@ h1::before {
 /* 响应式调整 */
 @media (max-width: 768px) {
     .header {
-        background-image: url('images/header-mobile.jpg') !important;
-        background-position: center 40%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        min-height: 300px;
-        padding: 25px 20px;
+        padding: 30px 20px;
+        gap: 12px;
+    }
+
+    .motto-container {
+        margin: 20px 0;
+    }
+
+    .subtitle {
+        font-size: 1.4em;
+        padding: 10px 20px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+} 
+
+/* 移动端样式优化 */
+@media (max-width: 768px) {
+    /* 照片网格布局 */
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* 照片项样式 */
+    .photo-item {
         position: relative;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    /* 照片样式 */
+    .photo-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* 寄语容器样式 */
+    .photo-item .caption {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 60px 20px 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: 1000;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        gap: 20px;
     }
 
-    /* 标题文字样式 */
-    h1 {
-        font-size: 2em;
+    /* 寄语文本样式 */
+    .photo-item .caption .message {
+        font-family: 'Playfair Display', 'Times New Roman', serif;
+        font-size: 1.1em;
+        line-height: 1.7;
         color: #fff;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        margin: 0;
-        position: relative;
-        z-index: 2;
-    }
-
-    /* 座右铭容器样式 */
-    .motto-container {
-        position: relative;
-        z-index: 2;
+        text-align: left;
+        padding: 20px;
         width: 100%;
-        text-align: center;
+        max-width: 600px;
+        height: calc(100% - 60px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* 座右铭文字样式 */
-    .subtitle {
-        font-size: 1.3em;
-        color: #fff;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        padding: 10px 20px;
-        background: rgba(0, 0, 0, 0.4);
-        border-radius: 25px;
-        display: inline-block;
-        margin: 0;
+    /* 显示寄语状态 */
+    .photo-item .caption.show {
+        opacity: 1;
+        visibility: visible;
     }
 
-    /* 计数器区域样式 */
-    .counter-section {
-        position: relative;
-        z-index: 2;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 15px 20px;
-        border-radius: 15px;
-        width: 90%;
-        max-width: 400px;
-        margin-bottom: 10px;
-    }
-
-    .counter-title {
-        color: #fff;
-        font-size: 0.9em;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    .counter {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .counter-item {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(5px);
-        padding: 8px 15px;
-        border-radius: 10px;
-        color: #fff;
-        text-align: center;
-    }
-
-    .counter-item span {
-        font-size: 1.2em;
-        font-weight: 600;
-    }
-
-    .counter-item label {
-        font-size: 0.8em;
-        color: rgba(255, 255, 255, 0.9);
-        display: block;
-        margin-top: 4px;
-    }
-
-    /* 背景渐变遮罩 */
-    .header::after {
-        content: '';
+    /* 年份标签 */
+    .photo-item .caption::before {
+        content: attr(data-year);
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.4),
-            rgba(0, 0, 0, 0.3)
-        );
-        z-index: 1;
-    }
-
-    /* 图标样式 */
-    .header-icons {
-        position: relative;
-        z-index: 2;
-    }
-
-    .header-icons .icon {
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         color: #fff;
-        font-size: 1.8em;
-        margin: 0 10px;
-        text-shadow: 0 0 15px rgba(52, 152, 219, 0.8);
+        font-size: 1.1em;
+        font-weight: 500;
+    }
+
+    /* 美化滚动条 */
+    .photo-item .caption .message::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .photo-item .caption .message::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .photo-item .caption .message::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
     }
 } 
