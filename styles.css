@@ -1139,7 +1139,7 @@ h1::before {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        filter: brightness(0.8); /* 稍微调暗照片 */
+        filter: brightness(0.7); /* 调暗照片以提高文字可读性 */
     }
 
     /* 寄语容器样式 */
@@ -1151,42 +1151,31 @@ h1::before {
         bottom: 0;
         background: linear-gradient(
             to bottom,
-            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.2),
             rgba(0, 0, 0, 0.7)
         );
-        padding: 20px;
         display: flex;
         flex-direction: column;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        justify-content: flex-end; /* 文字靠下显示 */
+        padding: 20px;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        z-index: 2;
     }
 
     /* 寄语文本样式 */
     .message {
-        font-size: 1.2em;
+        font-size: 1.1em;
         line-height: 1.6;
         color: rgba(255, 255, 255, 0.95);
         text-align: left;
-        margin-top: auto; /* 将文字推到底部 */
-        padding: 20px;
+        padding: 15px;
+        margin: 0;
         background: rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
+        border-radius: 12px;
         backdrop-filter: blur(5px);
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    }
-
-    /* 滚动条美化 */
-    .caption::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    .caption::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    .caption::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 2px;
     }
 
     /* 移除所有按钮和多余样式 */
@@ -1200,6 +1189,14 @@ h1::before {
     /* 移除年份标题，因为已经有了年份标签 */
     .year {
         display: none;
+    }
+
+    /* 移除所有悬停和点击相关的样式 */
+    .photo-item:hover .caption,
+    .caption.show {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
     }
 } 
 
