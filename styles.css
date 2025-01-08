@@ -903,6 +903,12 @@ h1::before {
         box-shadow: none;
         animation: scrollText 35s linear infinite;
         animation-play-state: paused;
+        color: #1a1a1a;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
     }
 
     /* 显示寄语状态 */

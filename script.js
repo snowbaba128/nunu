@@ -174,9 +174,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const caption = item.querySelector('.caption');
             const message = caption.querySelector('.message');
             
-            // 将文字内容设置为 data-content 属性
-            message.setAttribute('data-content', message.textContent);
-            message.textContent = '';
+            // 确保文字内容被正确设置
+            const content = message.textContent || message.innerText;
+            message.setAttribute('data-content', content);
+            message.textContent = ''; // 清空原始内容
             
             // 点击照片显示寄语
             item.addEventListener('click', (e) => {
@@ -185,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // 点击寄语背景关闭
+            // 点击背景关闭寄语
             caption.addEventListener('click', (e) => {
                 if (e.target === caption) {
                     caption.classList.remove('show');
