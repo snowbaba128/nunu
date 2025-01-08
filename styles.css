@@ -896,19 +896,14 @@ h1::before {
         left: 0;
         right: 0;
         padding: 30px 25px;
-        animation: scrollText 40s linear infinite;
-        animation-delay: 10s;
-        animation-play-state: paused;
+        animation: none;
     }
 
     /* 显示寄语状态 */
-    .photo-item .caption.show {
-        opacity: 1;
-        visibility: visible;
-    }
-
     .photo-item .caption.show .message::after {
-        animation-play-state: running;
+        animation: scrollText 40s linear infinite;
+        animation-delay: 10s;
+        animation-fill-mode: both;
     }
 
     /* 年份标签 */
@@ -928,10 +923,10 @@ h1::before {
 
     /* 滚动动画 */
     @keyframes scrollText {
-        0%, 15% {
+        0%, 10% {
             transform: translateY(8%);
         }
-        85%, 100% {
+        90%, 100% {
             transform: translateY(-100%);
         }
     }
