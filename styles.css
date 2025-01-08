@@ -932,4 +932,65 @@ h1::before {
             transform: translateY(-100%);
         }
     }
+
+    /* 寄语文本容器 - 增加选择器优先级 */
+    .photo-grid .photo-item .caption .message,
+    .photo-grid .photo-item .caption .message::after {
+        font-family: 'Crimson Text', Georgia, serif;
+        font-size: 1.4em;
+        line-height: 1.8;
+        color: #333;
+        text-align: left;
+        padding: 0 45px;
+        max-width: 700px;
+        width: 100%;
+        margin: 0 auto;
+        height: 70vh;
+        position: relative;
+        overflow: hidden;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 15px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 文字滚动动画容器 */
+    .photo-grid .photo-item .caption .message::after {
+        content: attr(data-content);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 45px;
+        background: none;
+        box-shadow: none;
+        animation: scrollText 35s linear infinite;
+        animation-play-state: paused;
+    }
+
+    /* 年份标签样式增强 */
+    .photo-grid .photo-item .caption::before {
+        content: attr(data-year);
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.98);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2em;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 调整滚动动画速度 */
+    @keyframes scrollText {
+        0% {
+            transform: translateY(15%);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+    }
 } 
