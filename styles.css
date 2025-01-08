@@ -1642,29 +1642,31 @@ h1::before {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        filter: brightness(0.6); /* 调暗照片以提高文字可读性 */
+        filter: brightness(0.7);
     }
 
     /* 寄语容器样式 */
     .caption {
-        position: absolute;
+        position: absolute !important;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0, 0, 0, 0.8)
+        );
         display: flex !important;
         flex-direction: column;
         justify-content: flex-end;
         padding: 20px;
-        background: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(0, 0, 0, 0.7)
-        );
         z-index: 2;
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
+    }
+
+    /* 寄语内容容器 */
+    .caption-content {
+        display: block !important;
     }
 
     /* 寄语文本样式 */
@@ -1675,11 +1677,10 @@ h1::before {
         text-align: left;
         padding: 15px;
         margin: 0;
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.5);
         border-radius: 12px;
         backdrop-filter: blur(5px);
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        opacity: 1 !important;
         display: block !important;
     }
 
@@ -1688,8 +1689,7 @@ h1::before {
     .close-caption,
     .caption::after,
     .caption::before,
-    .year,
-    .caption-content {
+    .year {
         display: none !important;
     }
 
@@ -1700,5 +1700,7 @@ h1::before {
         transition: none !important;
         transform: none !important;
         animation: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 } 
