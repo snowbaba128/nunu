@@ -1042,49 +1042,42 @@ h1::before {
     display: none; /* 默认隐藏按钮 */
 }
 
-/* 移动端样式优化 */
+/* 移动端按钮样式 */
 @media (max-width: 768px) {
-    /* 照片项样式调整 */
-    .photo-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: 15px;
-    }
-
-    /* 移动端显示按钮 */
     .view-details {
         position: absolute;
         bottom: 15px;
         right: 15px;
-        width: 36px;
-        height: 36px;
-        background: rgba(255, 255, 255, 0.95);
+        width: 40px;
+        height: 40px;
+        background: rgba(52, 152, 219, 0.9);
         border: none;
         border-radius: 50%;
-        display: flex;
+        display: flex !important; /* 强制显示 */
         align-items: center;
         justify-content: center;
         cursor: pointer;
         z-index: 3;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        opacity: 1; /* 始终可见 */
+        opacity: 1;
         transform: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
     }
 
     .view-details:active {
         transform: scale(0.95);
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(52, 152, 219, 1);
     }
 
     .btn-icon {
-        font-size: 1.2em;
-        color: #3498db;
+        font-size: 1.5em;
+        color: white;
     }
 
-    /* 移除之前的动画和渐变效果 */
-    .btn-text {
-        display: none;
+    /* 移除所有悬停相关的样式 */
+    .photo-item:hover .view-details {
+        transform: none;
+        opacity: 1;
     }
 } 
 
