@@ -867,23 +867,21 @@ h1::before {
 
     /* 寄语容器样式 */
     .caption {
-        position: absolute;
+        position: fixed;
         left: 0;
         right: 0;
-        bottom: 0;
         top: 0;
-        background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.9)
-        );
-        padding: 30px 20px;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 20px;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+        z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow-y: auto;
     }
 
     /* 寄语文本样式 */
@@ -893,9 +891,10 @@ h1::before {
         color: #ffffff;
         text-align: left;
         padding: 20px;
-        max-height: 80vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1001;
     }
 
     /* 显示寄语状态 */

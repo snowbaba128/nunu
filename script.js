@@ -173,34 +173,26 @@ document.addEventListener('DOMContentLoaded', function() {
         photoItems.forEach(item => {
             const caption = item.querySelector('.caption');
             
-            // 点击照片切换寄语显示状态
+            // 点击照片显示寄语
             item.addEventListener('click', (e) => {
-                // 先关闭所有其他打开的寄语
-                document.querySelectorAll('.caption.show').forEach(c => {
-                    if (c !== caption) {
-                        c.classList.remove('show');
-                    }
-                });
-                
-                // 切换当前寄语的显示状态
-                caption.classList.toggle('show');
+                caption.classList.add('show');
             });
-        });
-
-        // 添加滚动动画
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+            
+            // 点击寄语关闭
+            caption.addEventListener('click', (e) => {
+                if (e.target === caption) { // 只有点击背景时才关闭
+                    caption.classList.remove('show');
                 }
             });
-        }, {
-            threshold: 0.1
         });
 
-        document.querySelectorAll('.photo-item').forEach(item => {
-            observer.observe(item);
+        // 监听 ESC 键关闭寄语
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.caption.show').forEach(caption => {
+                    caption.classList.remove('show');
+                });
+            }
         });
     }
 }); 
