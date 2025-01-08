@@ -343,46 +343,70 @@ h1::before {
 }
 
 /* 桌面端寄语样式 */
-.caption {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: white;
-    padding: 25px;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 2;
-    overflow: hidden;
-    transform: translateZ(50px) scale(0.8);
-}
+@media (min-width: 769px) {
+    .photo-item {
+        cursor: default;
+    }
 
-/* 寄语文本样式 */
-.message {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.95);
-    text-align: left; /* 文字左对齐 */
-    padding: 0 25px;
-    margin: 0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
+    /* 移除点击相关的元素 */
+    .view-details,
+    .close-caption,
+    .caption-toggle,
+    .caption-content,
+    .photo-item::after {
+        display: none !important;
+    }
 
-/* 显示寄语时的样式 */
-.photo-item:hover .caption {
-    opacity: 1;
-    transform: translateZ(50px) scale(1);
-}
+    .caption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: white;
+        padding: 25px;
+        opacity: 0;
+        visibility: visible;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        overflow: hidden;
+        transform: translateZ(50px) scale(0.8);
+        background: linear-gradient(
+            135deg,
+            rgba(0, 20, 40, 0.95),
+            rgba(0, 40, 80, 0.95)
+        );
+    }
 
-.photo-item:hover .message {
-    transform: translateY(0);
-    opacity: 1;
+    .photo-item:hover .caption {
+        opacity: 1;
+        transform: translateZ(50px) scale(1);
+    }
+
+    .photo-item .message {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.95);
+        text-align: left;
+        padding: 0 25px;
+        margin: 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        max-height: none;
+        overflow: visible;
+        display: block;
+        width: 100%;
+    }
+
+    /* 移除所有点击相关的状态和动画 */
+    .photo-item:active,
+    .photo-item:focus,
+    .caption.show {
+        transform: none;
+    }
 }
 
 /* 添加渐变背景 */
@@ -814,7 +838,8 @@ h1::before {
         border-radius: 20px;
         background: #fff;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        overflow: visible;
+        overflow: hidden;
+        cursor: pointer;
     }
 
     /* 照片样式 */
@@ -822,7 +847,6 @@ h1::before {
         width: 100%;
         height: auto;
         display: block;
-        border-radius: 20px 20px 0 0;
     }
 
     /* 年份标签样式 */
@@ -843,46 +867,47 @@ h1::before {
 
     /* 寄语容器样式 */
     .caption {
-        position: relative;
-        background: #fff;
-        padding: 20px;
-        border-radius: 0 0 20px 20px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.9)
+        );
+        padding: 30px 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     /* 寄语文本样式 */
     .message {
-        font-size: 1em;
+        font-size: 1.1em;
         line-height: 1.8;
-        color: #2c3e50;
+        color: #ffffff;
         text-align: left;
-        margin: 0;
-        padding: 10px 5px;
+        padding: 20px;
+        max-height: 80vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 显示寄语状态 */
+    .caption.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* 移除所有不需要的元素 */
+    .caption-toggle,
+    .caption-content {
         display: none;
-    }
-
-    /* 展开状态 */
-    .caption.expanded .message {
-        display: block;
-    }
-
-    /* 展开按钮样式 */
-    .caption-toggle {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-        color: #3498db;
-        font-size: 0.95em;
-        font-weight: 500;
-        background: none;
-        border: none;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-        cursor: pointer;
-    }
-
-    .caption.expanded .caption-toggle {
-        color: #95a5a6;
     }
 
     /* 添加动画效果 */

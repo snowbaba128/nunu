@@ -133,19 +133,34 @@ document.addEventListener('DOMContentLoaded', function() {
         photoItems.forEach(item => {
             const caption = item.querySelector('.caption');
             
-            // 点击照片显示寄语
+            // 点击照片切换寄语显示状态
             item.addEventListener('click', (e) => {
-                if (!caption.classList.contains('show')) {
-                    caption.classList.add('show');
-                    document.body.style.overflow = 'hidden';
+                // 先关闭所有其他打开的寄语
+                document.querySelectorAll('.caption.show').forEach(c => {
+                    if (c !== caption) {
+                        c.classList.remove('show');
+                    }
+                });
+                
+                // 切换当前寄语的显示状态
+                caption.classList.toggle('show');
+            });
+        });
+
+        // 添加滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-            
-            // 点击寄语返回照片
-            caption.addEventListener('click', () => {
-                caption.classList.remove('show');
-                document.body.style.overflow = '';
-            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.photo-item').forEach(item => {
+            observer.observe(item);
         });
     }
 });
@@ -153,28 +168,22 @@ document.addEventListener('DOMContentLoaded', function() {
 // 移动端交互处理
 document.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth <= 768) {
-        const toggleButtons = document.querySelectorAll('.caption-toggle');
+        const photoItems = document.querySelectorAll('.photo-item');
         
-        toggleButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const caption = this.parentElement;
-                const isExpanded = caption.classList.toggle('expanded');
+        photoItems.forEach(item => {
+            const caption = item.querySelector('.caption');
+            
+            // 点击照片切换寄语显示状态
+            item.addEventListener('click', (e) => {
+                // 先关闭所有其他打开的寄语
+                document.querySelectorAll('.caption.show').forEach(c => {
+                    if (c !== caption) {
+                        c.classList.remove('show');
+                    }
+                });
                 
-                // 更新按钮文本
-                this.textContent = isExpanded ? '收起寄语' : '点击查看寄语';
-                
-                // 如果展开，滚动到合适位置
-                if (isExpanded) {
-                    const offset = 20;
-                    const elementPosition = caption.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+                // 切换当前寄语的显示状态
+                caption.classList.toggle('show');
             });
         });
 
