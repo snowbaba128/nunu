@@ -1637,14 +1637,16 @@ h1::before {
         width: 100%;
         background: #fff;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        /* 移除固定比例，让高度自适应内容 */
     }
 
     /* 照片样式 */
     .photo-item img {
         width: 100%;
-        height: auto;
         display: block;
-        object-fit: contain;
+        object-fit: cover; /* 改回 cover 以保持图片比例 */
+        max-height: none; /* 移除最大高度限制 */
+        height: auto; /* 让高度自适应 */
     }
 
     /* 年份标签样式 */
