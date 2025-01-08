@@ -172,6 +172,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         photoItems.forEach(item => {
             const caption = item.querySelector('.caption');
+            const message = caption.querySelector('.message');
+            
+            // 将文字内容设置为 data-content 属性
+            message.setAttribute('data-content', message.textContent);
+            message.textContent = '';
             
             // 点击照片显示寄语
             item.addEventListener('click', (e) => {
@@ -186,15 +191,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     caption.classList.remove('show');
                 }
             });
-        });
-
-        // 监听 ESC 键关闭寄语
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.caption.show').forEach(caption => {
-                    caption.classList.remove('show');
-                });
-            }
         });
     }
 }); 

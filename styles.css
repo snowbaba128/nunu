@@ -862,7 +862,7 @@ h1::before {
             rgba(0, 20, 40, 0.98)
         );
         backdrop-filter: blur(10px);
-        padding: 40px 25px;
+        padding: 60px 25px 25px;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
@@ -882,32 +882,26 @@ h1::before {
         max-width: 600px;
         width: 100%;
         margin: 0 auto;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.08);
         border-radius: 15px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        overflow-y: auto;
-        max-height: 70vh;
+        height: 70vh;
         position: relative;
-        animation: slideUp 0.5s ease forwards;
-        opacity: 0;
-        transform: translateY(20px);
+        overflow: hidden;
     }
 
-    /* 滚动条样式 */
-    .photo-item .caption .message::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    .photo-item .caption .message::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 2px;
-    }
-
-    .photo-item .caption .message::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 2px;
+    /* 文字滚动动画容器 */
+    .photo-item .caption .message::after {
+        content: attr(data-content);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 25px;
+        animation: scrollText 30s linear infinite;
+        animation-play-state: paused;
     }
 
     /* 显示寄语状态 */
@@ -916,9 +910,8 @@ h1::before {
         visibility: visible;
     }
 
-    .photo-item .caption.show .message {
-        opacity: 1;
-        transform: translateY(0);
+    .photo-item .caption.show .message::after {
+        animation-play-state: running;
     }
 
     /* 年份标签 */
@@ -932,17 +925,35 @@ h1::before {
         font-size: 1.2em;
         font-weight: 500;
         letter-spacing: 1px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    /* 添加动画 */
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+    /* 滚动动画 */
+    @keyframes scrollText {
+        0% {
+            transform: translateY(25%);
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        100% {
+            transform: translateY(-100%);
         }
+    }
+
+    /* 添加渐变遮罩 */
+    .photo-item .caption .message::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 50px;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .photo-item .caption .message::before {
+        top: 0;
+        background: linear-gradient(to bottom, 
+            rgba(0, 0, 0, 0.3) 0%,
+            transparent 100%
+        );
     }
 } 
