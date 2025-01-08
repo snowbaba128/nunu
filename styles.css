@@ -305,31 +305,27 @@ h1::before {
 }
 
 .photo-item::before {
-    content: '';
+    content: attr(data-year);
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, 
-        rgba(30, 136, 229, 0.2), 
-        rgba(156, 39, 176, 0.2)
-    );
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.photo-item:hover {
-    transform: scale(1.15) translateY(-15px);
-    box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(52, 152, 219, 0.3);
-    z-index: 10;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #2c3e50;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    opacity: 1;
+    transform: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .photo-item:hover::before {
-    opacity: 1;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
 
 .photo-item img {
@@ -1570,5 +1566,74 @@ h1::before {
             font-size: 0.9em;
             line-height: 1.7;
         }
+    }
+} 
+
+/* 移动端年份显示优化 */
+@media (max-width: 768px) {
+    .photo-item::before {
+        opacity: 1;
+        transform: none;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(5px);
+    }
+} 
+
+/* 移动端查看按钮样式 */
+@media (max-width: 768px) {
+    .view-details {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background: rgba(52, 152, 219, 0.9);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-size: 0.9em;
+        cursor: pointer;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .photo-item:hover .view-details {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .view-details:hover {
+        background: rgba(52, 152, 219, 1);
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        transform: translateY(-3px);
+    }
+
+    .btn-text {
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+
+    .btn-icon {
+        font-size: 1.2em;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+} 
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .photo-item::before {
+        padding: 6px 12px;
+        font-size: 0.85em;
     }
 } 
