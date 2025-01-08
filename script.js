@@ -129,25 +129,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const photoItems = document.querySelectorAll('.photo-item');
     const isMobile = window.innerWidth <= 768;
     
-    photoItems.forEach(item => {
-        const caption = item.querySelector('.caption');
-        const closeBtn = item.querySelector('.close-caption');
-        
-        if (isMobile) {
+    if (isMobile) {
+        photoItems.forEach(item => {
+            const caption = item.querySelector('.caption');
+            
             // 点击照片显示寄语
             item.addEventListener('click', (e) => {
-                if (!e.target.closest('.close-caption')) {
-                    caption.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                }
+                caption.classList.add('show');
+                document.body.style.overflow = 'hidden';
             });
             
-            // 点击关闭按钮隐藏寄语
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
+            // 点击寄语返回照片
+            caption.addEventListener('click', () => {
                 caption.classList.remove('show');
                 document.body.style.overflow = '';
             });
-        }
-    });
+        });
+    }
 }); 
