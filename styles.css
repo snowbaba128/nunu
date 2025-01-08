@@ -871,19 +871,19 @@ h1::before {
     /* 寄语文本容器 */
     .photo-item .caption .message {
         font-family: 'Playfair Display', 'Times New Roman', serif;
-        font-size: 1.15em;
-        line-height: 1.85;
+        font-size: 1em;
+        line-height: 1.7;
         color: #1a1a1a;
         text-align: left;
-        padding: 35px;
-        max-width: 550px;
-        width: 92%;
+        padding: 30px 25px;
+        max-width: 520px;
+        width: 94%;
         margin: 0 auto;
         height: 72vh;
         position: relative;
         overflow: hidden;
         font-weight: 500;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.01em;
         background: rgba(255, 255, 255, 0.98);
         border-radius: 16px;
         box-shadow: 
@@ -898,10 +898,10 @@ h1::before {
         top: 0;
         left: 0;
         right: 0;
-        padding: 35px;
+        padding: 30px 25px;
         background: none;
         box-shadow: none;
-        animation: scrollText 40s linear infinite;
+        animation: scrollText 35s linear infinite;
         animation-play-state: paused;
     }
 
@@ -924,11 +924,11 @@ h1::before {
         transform: translateX(-50%);
         color: rgba(255, 255, 255, 0.98);
         font-family: 'Montserrat', sans-serif;
-        font-size: 1em;
+        font-size: 0.95em;
         font-weight: 500;
         letter-spacing: 1.2px;
         background: rgba(255, 255, 255, 0.15);
-        padding: 8px 20px;
+        padding: 7px 18px;
         border-radius: 20px;
         backdrop-filter: blur(8px);
     }
@@ -949,7 +949,7 @@ h1::before {
         position: absolute;
         left: 0;
         right: 0;
-        height: 40px;
+        height: 35px;
         pointer-events: none;
         background: linear-gradient(to bottom,
             rgba(255, 255, 255, 0.95) 0%,
