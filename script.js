@@ -83,4 +83,39 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // 音乐控制功能
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    
+    // 由于浏览器政策，需要用户交互才能播放音乐
+    bgMusic.autoplay = false;
+    
+    // 点击任意位置开始播放音乐
+    document.body.addEventListener('click', function() {
+        if (bgMusic.paused) {
+            bgMusic.play();
+        }
+    }, { once: true }); // 只执行一次
+    
+    // 音乐控制按钮
+    musicToggle.addEventListener('click', function(e) {
+        e.stopPropagation(); // 阻止事件冒泡
+        if (bgMusic.paused) {
+            bgMusic.play();
+            musicToggle.classList.add('playing');
+        } else {
+            bgMusic.pause();
+            musicToggle.classList.remove('playing');
+        }
+    });
+    
+    // 添加音乐播放状态样式
+    bgMusic.addEventListener('playing', function() {
+        musicToggle.classList.add('playing');
+    });
+    
+    bgMusic.addEventListener('pause', function() {
+        musicToggle.classList.remove('playing');
+    });
 }); 
