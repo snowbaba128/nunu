@@ -856,12 +856,15 @@ h1::before {
         right: 0;
         top: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(0, 0, 0, 0.9);
         padding: 60px 20px 20px;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease;
         z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     /* 寄语文本样式 */
@@ -872,17 +875,17 @@ h1::before {
         color: #fff;
         text-align: left;
         padding: 20px;
-        height: 100%;
+        width: 100%;
+        max-width: 600px;
+        height: calc(100% - 60px);
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        white-space: pre-line; /* 保持文本换行 */
     }
 
     /* 显示寄语状态 */
     .photo-item .caption.show {
         opacity: 1;
         visibility: visible;
-        display: block; /* 确保显示 */
     }
 
     /* 年份标签 */
@@ -893,10 +896,8 @@ h1::before {
         left: 50%;
         transform: translateX(-50%);
         color: #fff;
-        font-family: 'Montserrat', sans-serif;
         font-size: 1.1em;
         font-weight: 500;
-        letter-spacing: 1px;
     }
 
     /* 美化滚动条 */
