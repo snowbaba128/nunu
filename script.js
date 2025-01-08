@@ -127,25 +127,26 @@ document.addEventListener('DOMContentLoaded', function() {
 // 移动端照片交互
 document.addEventListener('DOMContentLoaded', function() {
     const photoItems = document.querySelectorAll('.photo-item');
+    const isMobile = window.innerWidth <= 768;
     
     photoItems.forEach(item => {
-        const viewBtn = item.querySelector('.view-details');
         const caption = item.querySelector('.caption');
+        const closeBtn = item.querySelector('.close-caption');
         
-        if (viewBtn && caption) {
-            // 点击查看按钮显示寄语
-            viewBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                caption.classList.add('show');
-                document.body.style.overflow = 'hidden';
+        if (isMobile) {
+            // 点击照片显示寄语
+            item.addEventListener('click', (e) => {
+                if (!e.target.closest('.close-caption')) {
+                    caption.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                }
             });
             
-            // 点击关闭按钮区域隐藏寄语
-            caption.addEventListener('click', (e) => {
-                if (e.target === caption || e.target.closest('.caption::after')) {
-                    caption.classList.remove('show');
-                    document.body.style.overflow = '';
-                }
+            // 点击关闭按钮隐藏寄语
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                caption.classList.remove('show');
+                document.body.style.overflow = '';
             });
         }
     });
