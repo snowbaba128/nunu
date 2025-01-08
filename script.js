@@ -173,10 +173,10 @@ document.addEventListener('DOMContentLoaded', function() {
         photoItems.forEach(item => {
             const caption = item.querySelector('.caption');
             const message = caption.querySelector('.message');
+            const captionKey = message.getAttribute('data-caption');
             
-            // 将文字内容设置为 data-content 属性
-            message.setAttribute('data-content', message.textContent);
-            message.textContent = '';
+            // 直接设置文字内容
+            message.textContent = captions[captionKey];
             
             // 点击照片显示寄语
             item.addEventListener('click', (e) => {

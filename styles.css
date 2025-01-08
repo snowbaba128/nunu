@@ -871,16 +871,18 @@ h1::before {
         line-height: 1.7;
         color: #fff;
         text-align: left;
-        padding: 0 20px;
+        padding: 20px;
         height: 100%;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        white-space: pre-line; /* 保持文本换行 */
     }
 
     /* 显示寄语状态 */
     .photo-item .caption.show {
         opacity: 1;
         visibility: visible;
+        display: block; /* 确保显示 */
     }
 
     /* 年份标签 */
