@@ -174,26 +174,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const caption = item.querySelector('.caption');
             const message = caption.querySelector('.message');
             
-            // 保存原始文字内容
-            const originalText = message.innerHTML;
-            
-            // 设置文字内容到伪元素
-            message.setAttribute('data-content', originalText);
+            // 将文字内容设置为 data-content 属性
+            message.setAttribute('data-content', message.textContent);
+            message.textContent = '';
             
             // 点击照片显示寄语
             item.addEventListener('click', (e) => {
                 if (!e.target.closest('.caption')) {
-                    // 关闭其他打开的寄语
-                    document.querySelectorAll('.caption.show').forEach(c => {
-                        if (c !== caption) {
-                            c.classList.remove('show');
-                        }
-                    });
                     caption.classList.add('show');
                 }
             });
             
-            // 点击背景关闭寄语
+            // 点击寄语背景关闭
             caption.addEventListener('click', (e) => {
                 if (e.target === caption) {
                     caption.classList.remove('show');

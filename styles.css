@@ -856,12 +856,11 @@ h1::before {
         right: 0;
         top: 0;
         bottom: 0;
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 50px 20px 30px;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 60px 30px 30px;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
+        transition: opacity 0.3s ease;
         z-index: 1000;
         display: flex;
         align-items: center;
@@ -870,25 +869,22 @@ h1::before {
 
     /* 寄语文本容器 */
     .photo-item .caption .message {
-        font-family: 'Playfair Display', 'Times New Roman', serif;
-        font-size: 1em;
+        font-family: 'Crimson Text', Georgia, serif;
+        font-size: 1.25em;
         line-height: 1.7;
-        color: #1a1a1a;
+        color: #000;
         text-align: left;
-        padding: 30px 25px;
-        max-width: 520px;
-        width: 94%;
+        padding: 0 40px;
+        max-width: 700px;
+        width: 100%;
         margin: 0 auto;
-        height: 72vh;
+        height: 70vh;
         position: relative;
         overflow: hidden;
         font-weight: 500;
-        letter-spacing: 0.01em;
-        background: rgba(255, 255, 255, 0.98);
-        border-radius: 16px;
-        box-shadow: 
-            0 4px 20px rgba(0, 0, 0, 0.12),
-            0 0 0 1px rgba(255, 255, 255, 0.1);
+        letter-spacing: 0.2px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
     }
 
     /* 文字滚动动画容器 */
@@ -898,13 +894,7 @@ h1::before {
         top: 0;
         left: 0;
         right: 0;
-        padding: 30px 25px;
-        color: #1a1a1a;
-        font-family: inherit;
-        font-size: inherit;
-        line-height: inherit;
-        font-weight: inherit;
-        letter-spacing: inherit;
+        padding: 40px;
         animation: scrollText 35s linear infinite;
         animation-play-state: paused;
     }
@@ -923,43 +913,84 @@ h1::before {
     .photo-item .caption::before {
         content: attr(data-year);
         position: absolute;
-        top: 15px;
+        top: 20px;
         left: 50%;
         transform: translateX(-50%);
-        color: rgba(255, 255, 255, 0.98);
+        color: rgba(255, 255, 255, 0.95);
         font-family: 'Montserrat', sans-serif;
-        font-size: 0.95em;
+        font-size: 1.1em;
         font-weight: 500;
-        letter-spacing: 1.2px;
-        background: rgba(255, 255, 255, 0.15);
-        padding: 7px 18px;
-        border-radius: 20px;
-        backdrop-filter: blur(8px);
+        letter-spacing: 1.5px;
     }
 
     /* 滚动动画 */
     @keyframes scrollText {
         0% {
-            transform: translateY(8%);
+            transform: translateY(20%);
         }
         100% {
             transform: translateY(-100%);
         }
     }
 
-    /* 添加文字渐变效果 */
-    .photo-item .caption .message::before {
-        content: '';
+    /* 寄语文本容器 - 重新定义样式 */
+    .photo-grid .photo-item .caption .message,
+    .photo-grid .photo-item .caption .message::after {
+        font-family: 'Playfair Display', 'Times New Roman', serif;
+        font-size: 1.15em;
+        line-height: 1.9;
+        color: #2c3e50;
+        text-align: left;
+        padding: 0 35px;
+        max-width: 600px;
+        width: 90%;
+        margin: 0 auto;
+        height: 75vh;
+        position: relative;
+        overflow: hidden;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 12px;
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 文字滚动动画容器 */
+    .photo-grid .photo-item .caption .message::after {
+        content: attr(data-content);
         position: absolute;
+        top: 0;
         left: 0;
         right: 0;
-        height: 35px;
-        pointer-events: none;
-        background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(255, 255, 255, 0) 100%
-        );
-        top: 0;
-        z-index: 1;
+        padding: 35px;
+        background: none;
+        box-shadow: none;
+        animation: scrollText 45s linear infinite;
+        animation-play-state: paused;
+    }
+
+    /* 年份标签样式优化 */
+    .photo-grid .photo-item .caption::before {
+        content: attr(data-year);
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.98);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1em;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 调整滚动动画速度和起始位置 */
+    @keyframes scrollText {
+        0% {
+            transform: translateY(10%);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
     }
 } 
